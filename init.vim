@@ -18,10 +18,8 @@ set expandtab
 set smartindent
 
 if has('win32')
-   " echo "У вас винда"
-   " let $VIMPLUG=$HOME.'\AppData\Local\nvim\autoload\plug.vim'
+    " TODO: Сделать файл конфигурации совместимым с Windows
 else
-  "  echo "У вас что-то другое"
     let $VIMPLUG=$HOME.'/.local/share/nvim/site/autoload/plug.vim'
 endif
 
@@ -33,24 +31,30 @@ endif
 
 call plug#begin('~/.config/nvim/bundle')
 
-"Plug 'udalov/kotlin-vim' " Поддержка kotlin
+""" Функционал
 Plug 'jiangmiao/auto-pairs' " Автозакрытие скобок, кавычек и т.д.
 Plug 'frazrepo/vim-rainbow' " Цветные скобки
 Plug 'yggdroot/indentline' " Визуализация отступов
 Plug 'sheerun/vim-polyglot' " Пакет языков
 Plug 'preservim/nerdtree' " Дерево файлов
-Plug 'othree/xml.vim' " Поддержка XML
-Plug 'thinca/vim-quickrun' " Компиляция и выполнение программ
+"Plug 'thinca/vim-quickrun' " Компиляция и выполнение программ
+Plug 'junegunn/fzf.vim' " Использование fzf
 
-"Темы
+""" Темы
 Plug 'sickill/vim-monokai' " monokai
 Plug 'rafi/awesome-vim-colorschemes' " Пакет тем
 
-call plug#end()    
-
-let g:rainbow_active = 1
+call plug#end()
 
 set termguicolors
 colorscheme OceanicNext
 
+let g:rainbow_active = 1
 let g:indentLine_char = '▏'
+let g:fzf_command_prefix = 'Fzf'
+
+let mapleader = ","
+
+nmap ; :FzfBuffers<CR>
+nmap <Leader>f :FzfFiles<CR>
+nmap <Leader>t :FzfTags<CR>
